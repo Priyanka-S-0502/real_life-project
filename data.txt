@@ -1,0 +1,4 @@
+Income,4000.0
+Expense,10000.0,food
+Income,5000.0
+Expense,1000.0,travel
