@@ -1,47 +1,157 @@
-# Bank Management System (Python)
 
-## Project Description
+#  Smart Expense Tracker (Python)
 
-This is a simple **Bank Management System** written in Python.
-The program allows users to perform basic banking operations such as creating an account, depositing money, withdrawing money, and viewing account details.
+##  Project Description
 
-## Files in the Project
+This is a simple **Smart Expense Tracker** written in Python.
+It helps users manage their daily income and expenses efficiently.
 
-* **bank.py** – Main Python program that runs the bank application.
-* **bank_data.txt** – Stores account data such as account number, name, and balance.
+Users can add income, record expenses with categories, view transactions, and calculate balance.
 
-## Features
+---
 
-* Create a new bank account
-* Deposit money
-* Withdraw money
-* View account details
-* Store account data in a text file
+##  Files in the Project
 
-## Requirements
+* **expense_tracker.py** – Main Python program
+* **data.txt** – Stores transaction records
 
-* Python 3 installed on your system
+---
 
-## How to Run the Program
+##  Features
 
-1. Download or clone the repository.
-2. Open the project folder.
-3. Run the following command:
+* Add income 
+* Add expenses with category
+* View all transactions
+* Calculate balance
+* Category-wise expense summary
+* Login system 
+* File handling for data storage
+
+---
+
+##  Requirements
+
+* Python 3
+
+---
+
+##  How to Run
+
+```bash
+python expense_tracker.py
+```
+
+---
+
+##  Login Details
 
 ```
-python bank.py
+Username: admin
+Password: 1234
 ```
 
-## Example
+---
 
-The program will display a menu like:
+#  Source Code
 
-1. Create Account
-2. Deposit Money
-3. Withdraw Money
-4. View Account
-5. Exit
+```python
+import os
 
-## Author
+FILE_NAME = "data.txt"
 
-Rajakrishnammal A
+if not os.path.exists(FILE_NAME):
+    open(FILE_NAME, 'w').close()
+
+USERNAME = "admin"
+PASSWORD = "1234"
+
+def login():
+    user = input("Enter username: ")
+    pwd = input("Enter password: ")
+    return user == USERNAME and pwd == PASSWORD
+
+def add_income():
+    amount = float(input("Enter income amount: "))
+    with open(FILE_NAME, "a") as f:
+        f.write(f"Income,{amount}\n")
+
+def add_expense():
+    amount = float(input("Enter expense amount: "))
+    category = input("Enter category: ")
+    with open(FILE_NAME, "a") as f:
+        f.write(f"Expense,{amount},{category}\n")
+
+def view_transactions():
+    with open(FILE_NAME, "r") as f:
+        for line in f:
+            print(line.strip())
+
+def calculate_balance():
+    income = expense = 0
+    with open(FILE_NAME, "r") as f:
+        for line in f:
+            parts = line.strip().split(",")
+            if parts[0] == "Income":
+                income += float(parts[1])
+            else:
+                expense += float(parts[1])
+    print("Balance:", income - expense)
+
+def category_summary():
+    summary = {}
+    with open(FILE_NAME, "r") as f:
+        for line in f:
+            parts = line.strip().split(",")
+            if parts[0] == "Expense":
+                summary[parts[2]] = summary.get(parts[2], 0) + float(parts[1])
+    print(summary)
+
+def main():
+    while True:
+        print("\n1.Add Income\n2.Add Expense\n3.View\n4.Balance\n5.Summary\n6.Exit")
+        ch = input("Enter choice: ")
+        if ch == "1": add_income()
+        elif ch == "2": add_expense()
+        elif ch == "3": view_transactions()
+        elif ch == "4": calculate_balance()
+        elif ch == "5": category_summary()
+        elif ch == "6": break
+
+if login():
+    main()
+```
+
+---
+
+#  Output
+
+
+<img width="764" height="672" alt="image" src="https://github.com/user-attachments/assets/432b1e0e-1d9a-454d-aeb6-2f219981aad6" />
+<img width="774" height="729" alt="image" src="https://github.com/user-attachments/assets/404e8c8b-4c4d-4ce0-bfad-42c0215285ae" />
+<img width="747" height="564" alt="image" src="https://github.com/user-attachments/assets/debdb6aa-0b56-406b-a264-21244342114c" />
+
+
+
+
+
+#  Author
+
+Priyanka S
+
+---
+
+#  Result
+
+The **Smart Expense Tracker** application was successfully implemented using Python.
+
+The program allows users to:
+
+* Manage income and expenses
+* Store data using file handling
+* Calculate balance accurately
+* View categorized expense summary
+
+ The system works efficiently and is useful for **real-time financial tracking**.
+
+---
+
