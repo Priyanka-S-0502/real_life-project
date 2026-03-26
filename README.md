@@ -1,5 +1,5 @@
 
-#  Smart Expense Tracker (Python)
+#  Smart Expense Tracker 
 
 ##  Project Description
 
@@ -132,12 +132,6 @@ if login():
 
 
 
-
-
-#  Author
-
-Priyanka S
-
 ---
 
 #  Result
@@ -154,4 +148,6 @@ The program allows users to:
  The system works efficiently and is useful for **real-time financial tracking**.
 
 ---
+#  Author
 
+Priyanka S 212224040255
